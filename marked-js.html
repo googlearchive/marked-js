@@ -21,7 +21,7 @@ license that can be found in the LICENSE file.
         }
       },
       textChanged: function () {
-        this.innerHTML = marked(this.text.replace(/\\n/g, '\n'));
+        this.innerHTML = marked(this.text.replace(/^[^\S\n]+/gm,''));
       },
       highlight: function(code, lang) {
         return this.fire('marked-js-highlight', {code: code, lang: lang}).code || code;

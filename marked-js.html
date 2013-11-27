@@ -17,7 +17,7 @@ license that can be found in the LICENSE file.
           highlight: this.highlight.bind(this)
         });
         if (!this.text) {
-          this.text = this.textContent;
+          this.text = this.innerHTML;
         }
       },
       textChanged: function () {

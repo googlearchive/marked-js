@@ -7,12 +7,13 @@ license that can be found in the LICENSE file.
 <script src="marked/marked.js"></script>
 
 <polymer-element name="marked-js" attributes="text">
+
   <script>
     Polymer('marked-js', {
-      text: '',
-      allowAuthorStyles: true,
-      enteredView: function() {
 
+      text: '',
+
+      enteredView: function() {
         marked.setOptions({
           highlight: this.highlight.bind(this)
         });
@@ -20,13 +21,18 @@ license that can be found in the LICENSE file.
           this.text = this.innerHTML;
         }
       },
+
       textChanged: function () {
-        this.innerHTML = marked(this.text.replace(/^[^\S\n]+/gm,''));
+        this.innerHTML = marked(this.text);
       },
+
       highlight: function(code, lang) {
-        return this.fire('marked-js-highlight', {code: code, lang: lang}).code || code;
+        var event = this.fire('marked-js-highlight', {code: code, lang: lang});
+        return event.detail.code || code;
       }
+
     });
   </script>
+
 </polymer-element>
 
